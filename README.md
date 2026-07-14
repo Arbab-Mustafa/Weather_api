@@ -8,21 +8,21 @@ The project focuses on clean architecture, security, scalability, and production
 
 ---
 
-# 🚀 Live Demo
+#  Live Demo
 
-> https://YOUR-DEPLOYMENT.vercel.app
+https://weather-api-nu-six.vercel.app/
 
 ---
 
-# 📸 Preview
+# Preview
 
 (Add screenshots here after deployment)
 
 ---
 
-# ✨ Features
+#  Features
 
-## 🌍 Location Support
+##  Location Support
 
 - Search weather by city or place name
 - Automatic browser geolocation
@@ -31,7 +31,7 @@ The project focuses on clean architecture, security, scalability, and production
 
 ---
 
-## 🌤 Weather Data
+##  Weather Data
 
 Displays live Weather-AI data including:
 
