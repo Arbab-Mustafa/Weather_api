@@ -1,86 +1,526 @@
-# Weather-AI Dashboard
+# 🌦️ Weather-AI Dashboard
 
-Production-ready weather dashboard for the Weather-AI technical assessment. It uses a Next.js App Router frontend, a server-side proxy for API security, responsive Tailwind UI, and a GitHub Actions workflow for Vercel deployment.
+A production-ready Weather Dashboard built as part of the **Weather-AI Technical Assessment**.
 
-## Features
+The application securely integrates with the Weather-AI API through a server-side proxy, visualizes current and forecast weather, and presents AI-generated weather insights in a clean, responsive interface.
 
-- Secure API proxy so the Weather-AI key never reaches the browser
-- Browser geolocation and manual latitude/longitude entry
-- Current weather, 7-day forecast, hourly chart, and AI summary
-- Loading skeletons, validation, rate-limit handling, and network error states
-- Mobile-first responsive layout with a polished glassmorphism-style UI
+The project focuses on clean architecture, security, scalability, and production-ready engineering practices rather than simply displaying weather information.
 
-## Tech Stack
+---
 
-- Next.js 14 App Router
+# 🚀 Live Demo
+
+> https://YOUR-DEPLOYMENT.vercel.app
+
+---
+
+# 📸 Preview
+
+(Add screenshots here after deployment)
+
+---
+
+# ✨ Features
+
+## 🌍 Location Support
+
+- Search weather by city or place name
+- Automatic browser geolocation
+- Manual latitude & longitude input
+- Server-side geocoding
+
+---
+
+## 🌤 Weather Data
+
+Displays live Weather-AI data including:
+
+- Current Weather
+- Temperature
+- Weather Condition
+- Wind Speed
+- Wind Direction
+- Day / Night Status
+- Last Updated Time
+- Weather Code
+
+---
+
+## 📈 Forecasts
+
+### Hourly Forecast
+
+- Next 24 hours
+- Interactive temperature chart
+- Weather condition tooltip
+- Rain prediction
+
+### Daily Forecast
+
+- 7-Day Forecast
+- Maximum temperature
+- Minimum temperature
+- Rainfall
+- Weather condition
+- Weather icons
+
+---
+
+## 🤖 AI Weather Insights
+
+Displays AI-generated weather analysis including:
+
+- Weather Summary
+- Important Highlights
+- Forecast Overview
+- Last Updated Timestamp
+
+Gracefully handles situations where AI insights are unavailable.
+
+---
+
+## 🔒 Security
+
+The application never exposes the Weather-AI API key.
+
+All requests are proxied through Next.js API Routes.
+
+```
+Browser
+     │
+     ▼
+Next.js API Route
+     │
+     ▼
+Weather-AI API
+```
+
+API credentials remain securely on the server.
+
+---
+
+## ⚡ Performance
+
+- Server-side API Proxy
+- Optimized production build
+- Cached API responses
+- Responsive UI
+- Skeleton loading
+- Lazy rendering
+- Error boundaries
+- AbortController support
+- Retry functionality
+
+---
+
+## 📱 Responsive Design
+
+Fully responsive across
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+Built using Tailwind CSS.
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js 14 (App Router)
+- React
 - TypeScript
 - Tailwind CSS
+
+## Charts
+
 - Recharts
-- lucide-react
+
+## Icons
+
+- Lucide React
+
+## Date Formatting
+
 - date-fns
+
+## Deployment
+
 - Vercel
 
-## Setup
+## CI/CD
 
-1. Clone the repository.
-2. Install dependencies:
+- GitHub Actions
+
+---
+
+# 📁 Project Structure
+
+```
+src
+│
+├── app
+│   ├── api
+│   │   ├── geocode
+│   │   └── proxy
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components
+│   ├── AISummaryCard.tsx
+│   ├── CurrentWeatherCard.tsx
+│   ├── DailyForecastList.tsx
+│   ├── ErrorAlert.tsx
+│   ├── HourlyChart.tsx
+│   ├── LoadingSkeleton.tsx
+│   ├── LocationInput.tsx
+│   └── WeatherDashboard.tsx
+│
+├── hooks
+│   └── useWeather.ts
+│
+├── lib
+│   └── types.ts
+│
+├── utils
+│   ├── format.ts
+│   └── weatherCodeMap.ts
+│
+├── .env.local.example
+├── package.json
+└── README.md
+```
+
+---
+
+# 🏗 Architecture
+
+```
+                 Browser
+                     │
+                     ▼
+        Weather Dashboard (React)
+                     │
+                     ▼
+             useWeather Hook
+                     │
+                     ▼
+          Next.js API Proxy Route
+                     │
+                     ▼
+             Weather-AI API
+```
+
+The browser never communicates directly with Weather-AI.
+
+---
+
+# ⚙️ Requirements
+
+Before running the project, install:
+
+- Node.js 20+
+- npm
+- Git
+
+Check versions
+
+```bash
+node -v
+
+npm -v
+
+git --version
+```
+
+---
+
+# 🔑 Weather-AI API Key
+
+Create an account on Weather-AI.
+
+Generate an API key.
+
+Example
+
+```
+wai_xxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Never expose this key inside client-side code.
+
+---
+
+# 📥 Installation
+
+## 1 Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/weather-ai-dashboard.git
+```
+
+---
+
+## 2 Enter Project
+
+```bash
+cd weather-ai-dashboard
+```
+
+---
+
+## 3 Install Dependencies
 
 ```bash
 npm install
 ```
 
-3. Create your local environment file from the example:
+---
+
+## 4 Create Environment File
+
+Copy the example environment file.
+
+Windows
 
 ```bash
 copy .env.local.example .env.local
 ```
 
-4. Add your Weather-AI API key to `.env.local`:
+Linux / macOS
 
 ```bash
+cp .env.local.example .env.local
+```
+
+---
+
+## 5 Configure Environment Variables
+
+Open
+
+```
+.env.local
+```
+
+Add
+
+```env
 WEATHER_AI_API_KEY=wai_your_api_key_here
 ```
 
-5. Run the app locally:
+---
+
+## 6 Run Development Server
 
 ```bash
 npm run dev
 ```
 
-## Getting a Weather-AI API Key
+Open
 
-Create an account on Weather-AI and generate an API key from the dashboard. The proxy route reads `WEATHER_AI_API_KEY` on the server and attaches it as a Bearer token to upstream API calls.
-
-## Deployment
-
-The repository includes `.github/workflows/vercel-deploy.yml` for GitHub Actions deployment to Vercel.
-
-Set these GitHub repository secrets before enabling the workflow:
-
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-- `WEATHER_AI_API_KEY`
-
-## Project Structure
-
-```text
-src/
-├── app/
-│   ├── api/proxy/[...segments]/route.ts
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-├── hooks/
-├── lib/
-└── utils/
+```
+http://localhost:3000
 ```
 
-## Live Demo
+---
 
-TBD after deployment.
+# 🏗 Build for Production
 
-## License
+```bash
+npm run build
+```
 
-MIT
+Start production server
+
+```bash
+npm start
+```
+
+---
+
+# 🧪 Available Scripts
+
+Development
+
+```bash
+npm run dev
+```
+
+Production Build
+
+```bash
+npm run build
+```
+
+Production Start
+
+```bash
+npm start
+```
+
+Lint
+
+```bash
+npm run lint
+```
+
+---
+
+# 🌐 Environment Variables
+
+| Variable | Required | Description |
+|-----------|----------|-------------|
+| WEATHER_AI_API_KEY | ✅ | Weather-AI API Key |
+
+Example
+
+```env
+WEATHER_AI_API_KEY=wai_xxxxxxxxxxxxxxxxx
+```
+
+---
+
+# 🚀 Deployment
+
+## Deploy to Vercel
+
+Push the repository to GitHub.
+
+Import the repository into Vercel.
+
+Add the following Environment Variable inside Vercel.
+
+```
+WEATHER_AI_API_KEY
+```
+
+Deploy.
+
+---
+
+# ⚙ GitHub Actions Deployment
+
+This repository includes an automated deployment workflow.
+
+```
+.github/workflows/vercel-deploy.yml
+```
+
+Required GitHub Secrets
+
+```
+VERCEL_TOKEN
+
+VERCEL_ORG_ID
+
+VERCEL_PROJECT_ID
+
+WEATHER_AI_API_KEY
+```
+
+Every push to the **main** branch automatically triggers deployment.
+
+---
+
+# 🔒 Security Considerations
+
+✔ API key never reaches the browser
+
+✔ Server-side API proxy
+
+✔ Environment Variables
+
+✔ Request validation
+
+✔ Graceful error handling
+
+✔ Rate limit handling
+
+✔ AbortController support
+
+---
+
+# 📊 API Flow
+
+```
+User
+
+   │
+
+Search Location
+
+   │
+
+Next.js Geocode API
+
+   │
+
+Latitude & Longitude
+
+   │
+
+Weather Proxy
+
+   │
+
+Weather-AI API
+
+   │
+
+Weather Response
+
+   │
+
+Dashboard Rendering
+```
+
+---
+
+# 🎯 Assessment Highlights
+
+This project demonstrates:
+
+- Production-ready architecture
+- Secure API integration
+- Clean component-based design
+- Responsive UI/UX
+- TypeScript best practices
+- Error handling
+- Loading states
+- AI integration
+- Data visualization
+- GitHub Actions CI/CD
+- Vercel deployment
+- Modern React patterns
+- Scalable project structure
+
+---
+
+# 👨‍💻 Author
+
+**Arbab Mustafa**
+
+Portfolio
+
+https://social.arbabmustafa.com
+
+GitHub
+
+https://github.com/Arbab-Mustafa
+
+LinkedIn
+
+https://linkedin.com/in/arbabmustafa
+
+---
+
+# 📄 License
+
+MIT License
+
+Feel free to use this project for educational purposes.
