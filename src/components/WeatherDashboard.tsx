@@ -83,7 +83,11 @@ export function WeatherDashboard() {
             <CurrentWeatherCard current={data.current} />
             <div className="grid gap-6 lg:grid-cols-2">
               <HourlyChart hourly={data.hourly} />
-              <AISummaryCard aiSummary={data.ai_summary} />
+
+              <AISummaryCard
+                aiSummary={data.ai_summary}
+                insight={data.insight}
+              />
             </div>
             <DailyForecastList daily={data.daily} />
           </div>
